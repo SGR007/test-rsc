@@ -8,9 +8,7 @@ export interface User {
 }
 
 async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
-    cache: "no-store",
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`);
   const data = res.json();
   return data;
 }

@@ -10,10 +10,7 @@ export interface User {
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`);
   const data = res.json();
-  if (res.ok) {
-    return data;
-  }
-  return [];
+  return data;
 }
 
 export default async function Home() {

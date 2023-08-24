@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export interface User {
   id: number;
   first_name: string;
@@ -7,14 +11,20 @@ export interface User {
   ip_address: string;
 }
 
-async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`);
-  const data = res.json();
-  return data;
-}
+export default function Home() {
+  const [usersData, setUsersData] = useState([]);
 
-export default async function Home() {
-  const usersData = await getData();
+  useEffect(() => {
+    async function getData() {
+      const res = await fetch("/api/users");
+      const data = await res.json();
+      setUsersData(data);
+    }
+
+    getData();
+  }, []);
+
+  console.log(usersData);
 
   return (
     <div className="container mx-auto p-4">
